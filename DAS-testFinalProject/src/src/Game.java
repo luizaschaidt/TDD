@@ -12,14 +12,11 @@ public class Game {
 	}
 
 	public String result() {
-		if (p1[1] == "S" && p2[1] == "P"){
-			return p2[0];
+		if ((p1[1] == "S" && p2[1] == "P")||(p1[1]== "P" && p2[1] == "R")||((p1[1]== "R" && p2[1] == "S"))){
+			return p1[0];
 		}
-		//P > R
-		//R > S
-		
-		
-		return p1[0];
+		else
+			return p2[0];
 	}
 
 	
