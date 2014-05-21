@@ -12,7 +12,10 @@ public class testGame {
 
 	@Before
 	public void setUp() throws Exception {
-		Game game = new Game("Dave", "S", "Armando", "P");
+		String [] p1 = {"Dave","S"};
+		String [] p2 = {"Armando","P"};
+		
+		Game game = new Game(p1, p1);
 	}
 
 	@After
@@ -23,8 +26,11 @@ public class testGame {
 	
 	@Test
 	public void testGameRound() {
-		Game game = new Game("Dave", "S", "Armando", "P");
-		assertEquals("Dave",game.result());
+		String [] p1 = {"Dave","S"};
+		String [] p2 = {"Armando","P"};		
+		Game game = new Game(p1, p2);
+		
+		assertEquals("Armando",game.result());
 	}
 	
 
