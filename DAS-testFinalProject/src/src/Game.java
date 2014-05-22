@@ -1,7 +1,5 @@
 package src;
 
-import static org.junit.Assert.fail;
-
 public class Game {
 	
 	private String[] p1;
@@ -11,20 +9,10 @@ public class Game {
 
 			this.p1 = p1;
 			this.p2 = p2;
-			
-			try
-				{
-				if((!p1[1].equals("S")) || (!p1[1].equals("P") || (!p1[1].equals("R")))) {
-		    	 //if(true) {
-		    		 System.out.println("diferente");
-		    		 throw new GameInputException();
-		    	 }
-			 }
-			 catch(Exception e)
-			 {
-				// fail("GameInputException expected");
-			 }
-		
+							
+			if((!p1[1].equals("S")&&!p1[1].equals("P")&&!p1[1].equals("R"))||(!p2[1].equals("S")&&!p2[1].equals("P")&&!p2[1].equals("R"))) {
+	    		 throw new NoSuchStrategyError("Strategy must be one of R,P,S");
+	    	 }			 
 	}
 
 	public String result() {
