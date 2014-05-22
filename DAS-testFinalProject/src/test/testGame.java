@@ -27,7 +27,7 @@ public class testGame {
 	
 	@Test
 	public void testGameRound() {
-		String [] p1 = {"Dave","c"};
+		String [] p1 = {"Dave","S"};
 		String [] p2 = {"Armando","P"};		
 		Game game = new Game(p1, p2);
 				
@@ -41,11 +41,25 @@ public class testGame {
 		assertEquals("Armando",game.result());
 	}
 	
-	@Test (expected = GameInputException.class)  
+	/*@Test (expected = GameInputException.class)  
 	public void testGameInputs() {
 		String [] p1 = {"Dave","c"};
 		String [] p2 = {"Armando","p"};		
 		Game game = new Game(p1, p2);
 		}
+	*/
+	
+	@Test
+	public void testGameInputs() {
+		try {
+			String [] p1 = {"Dave","c"};
+			String [] p2 = {"Armando","p"};		
+			Game game = new Game(p1, p2);
+			fail("GameInputException expected"); 
+		} catch (Exception e) {
+			System.out.println("t");
+			assertEquals(GameInputException.class, e.getClass());
+		}
+	}
 
 }
