@@ -32,6 +32,8 @@ public class test {
 
 	@Test
 	public void testRomanToArabic() {
+		assertEquals(10, conv.romanValue('X'));
+		assertEquals(1000, conv.romanValue('M'));
 		assertEquals(arabic,conv.romanToArabic(roman));
 	}
 
