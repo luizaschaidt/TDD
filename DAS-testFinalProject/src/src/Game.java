@@ -18,7 +18,9 @@ public class Game {
 	}
 
 
-	public String result() {
+	public String result(Game games) {
+		
+		
 		if ((p2[1] == "S" && p1[1] == "P")||(p2[1]== "P" && p1[1] == "R")||((p2[1]== "R" && p1[1] == "S"))){
 			return p2[0];
 		}
@@ -35,7 +37,11 @@ public class Game {
 		int it = games.length;
 		
 		for(int n=0;n<it;n++){
-			
+			Game gameTemp = games[n];
+			String[] player1 = gameTemp.p1;
+			String[] player2 = gameTemp.p2;
+			String vencedor = result(games[n]);
+			System.out.println(vencedor);
 		}
 		
 		return "Cesar";
