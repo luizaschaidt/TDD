@@ -5,26 +5,25 @@ public class Conversor {
 	public int romanToArabic(String roman) {
 		
 		String newRoman="";
-		int numRoman;
+		int numRoman=0;
 		int temp;
+		int result;
 		
 		for(int i=roman.length(); i>0; i--){
 			//newRoman=newRoman+roman.charAt(i-1);
 			//if(roman.charAt(i-1));
 			temp = romanValue(roman.charAt(i-1));
-			if(roman.length()!= i){
-				if(true){
-					
+			if(i>1){
+				if(temp<romanValue(roman.charAt(i-2))){
+					numRoman=-romanValue(roman.charAt(i-2));
 				}
-				if(true){
-					
+				else{
+					numRoman=+romanValue(roman.charAt(i-2));
 				}
 			}
 			
-		
 		}
-		System.out.println(newRoman);
-		return 22;
+		return numRoman;
 	}
 
 	public int romanValue(char arabic) {

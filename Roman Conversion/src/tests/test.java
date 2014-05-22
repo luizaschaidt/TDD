@@ -26,8 +26,8 @@ public class test {
 	@Before
 	public void setUp() throws Exception {
 		conv = new Conversor();
-		roman = "XXII";
-		arabic = 22;
+		roman = "XIV";
+		arabic = 14;
 	}
 
 	@Test
