@@ -44,7 +44,6 @@ Desktop.ini
 ######################
  
 *.pydevproject
-.project
 .metadata
 bin/**
 tmp/**
@@ -58,14 +57,5 @@ local.properties
 .settings/
 .loadpath
 /src/main/resources/rebel.xml
-# External tool builders
-.externalToolBuilders/
- 
-# Locally stored "Eclipse launch configurations"
-*.launch
- 
-# CDT-specific
-.cproject
- 
-# PDT-specific
+# vv# PDT-specific
 .buildpath
