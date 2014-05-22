@@ -55,10 +55,34 @@ public class Conversor {
 		return 0;
 	}
 
-	public String arabicToRoman(int i) {
-		return "I";
+	public String arabicToRoman(int arabic) {
+		int casas=1;
+		while((arabic = arabic/10) >0)
+			casas++;
+		if (arabic)
+		return arabicValue(arabic);
 	}
 
-	
+	public String arabicValue(int arabic) {
+		switch (arabic) {
+		case 1:
+			return "I";
+		case 5:
+			return "V";	
+		case 10:
+			return "X";
+		case 50:
+			return "L";
+		case 100:
+			return "C";
+		case 500:
+			return "D";
+		case 1000:
+			return "M";
+		default:
+			break;
+		}
+		return "";
+	}
 	
 }

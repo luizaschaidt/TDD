@@ -40,6 +40,8 @@ public class test {
 	@Test
 	public void testArabicToRoman() {
 		assertEquals("I", conv.arabicToRoman(1));
+		assertEquals("X", conv.arabicToRoman(10));
+		assertEquals("II", conv.arabicToRoman(2));
 	
 	}
 	
