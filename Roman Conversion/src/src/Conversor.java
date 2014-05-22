@@ -6,29 +6,28 @@ public class Conversor {
 	
 		int numRoman=0;
 		int temp;
-		if (roman.length()==1)
+		
+		if (roman.length()==1){
 			return romanValue(roman.charAt(0));
+		}
 		else{
+			
 			for(int i=roman.length(); i>0; i--){
-				//newRoman=newRoman+roman.charAt(i-1);
-				//if(roman.charAt(i-1));
+
 				temp = romanValue(roman.charAt(i-1));
 			
+				if(i==roman.length())
+				numRoman= numRoman +romanValue(roman.charAt(i-1));
+				
 				if(i>=2){
-					numRoman= numRoman +romanValue(roman.charAt(i-1));
-					System.out.println("1");
+					
 					if(temp>romanValue(roman.charAt(i-2))){
-						System.out.println(temp);
-						System.out.println(romanValue(roman.charAt(i-2)));
-						System.out.println("2");
-						numRoman=-romanValue(roman.charAt(i-2));
+						numRoman= numRoman-romanValue(roman.charAt(i-2));
 					}
 					else{
-						System.out.println("3");
 						numRoman= numRoman +romanValue(roman.charAt(i-2));
 					}
 				}
-				
 			}
 		}
 		return numRoman;
@@ -54,6 +53,10 @@ public class Conversor {
 			break;
 		}
 		return 0;
+	}
+
+	public String arabicToRoman(int i) {
+		return "I";
 	}
 
 	

@@ -26,8 +26,8 @@ public class test {
 	@Before
 	public void setUp() throws Exception {
 		conv = new Conversor();
-		roman = "XIV";
-		arabic = 14;
+		roman = "MCIX";
+		arabic = 1109;
 	}
 
 	@Test
@@ -36,5 +36,12 @@ public class test {
 		assertEquals(1000, conv.romanValue('M'));
 		assertEquals(arabic,conv.romanToArabic(roman));
 	}
+	
+	@Test
+	public void testArabicToRoman() {
+		assertEquals("I", conv.arabicToRoman(1));
+	
+	}
+	
 
 }
