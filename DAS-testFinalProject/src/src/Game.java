@@ -1,5 +1,7 @@
 package src;
 
+import java.util.Iterator;
+
 public class Game {
 	
 	private String[] p1;
@@ -15,13 +17,28 @@ public class Game {
 	    	 }			 
 	}
 
+
 	public String result() {
-		if ((p1[1] == "S" && p2[1] == "P")||(p1[1]== "P" && p2[1] == "R")||((p1[1]== "R" && p2[1] == "S"))){
-			return p1[0];
+		if ((p2[1] == "S" && p1[1] == "P")||(p2[1]== "P" && p1[1] == "R")||((p2[1]== "R" && p1[1] == "S"))){
+			return p2[0];
 		}
 		else
-			return p2[0];
+			return p1[0];
 	}
 
+	public Game(Game[] games) {
+		
+	}
+
+
+	public String tournament_winner(Game[] games) {
+		int it = games.length;
+		
+		for(int n=0;n<it;n++){
+			
+		}
+		
+		return "Cesar";
+	}
 	
 }

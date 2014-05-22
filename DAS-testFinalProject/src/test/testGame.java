@@ -40,6 +40,15 @@ public class testGame {
 		assertEquals("Armando",game.result());
 	}
 	
+	@Test
+	public void testGameRoundSameStrategy(){
+		String [] p1 = {"Dave","S"};
+		String [] p2 = {"Armando","S"};		
+		Game game = new Game(p1, p2);
+				
+		assertEquals("Dave",game.result());
+	}
+	
 	
 	@Test (expected = NoSuchStrategyError.class)  
 	public void testGameInputs() {
@@ -48,6 +57,23 @@ public class testGame {
 		Game game = new Game(p1, p2);
 		
 		}
+	
+	@Test
+	public void testTournament_winner(){
+		String [] p1 = {"Dave","S"};
+		String [] p2 = {"Armando","P"};		
+		Game game1 = new Game(p1, p2);
+		
+		String [] p3 = {"Cesar","R"};
+		String [] p4 = {"Kevin","S"};		
+		Game game2 = new Game(p3, p4);
+		
+		Game [] games = {game1, game2};
+		
+		Game tournament = new Game(games);
+		
+		assertEquals("Cesar",tournament.tournament_winner(games));
+	}
 	
 
 }
