@@ -7,15 +7,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import src.Game;
+import src.GameInputException;
 
 public class testGame {
 
 	@Before
 	public void setUp() throws Exception {
-		String [] p1 = {"Dave","S"};
-		String [] p2 = {"Armando","P"};
+		String [] p1 = {"Dave","n"};
+		String [] p2 = {"Armando","S"};
 		
-		Game game = new Game(p1, p1);
+		Game game = new Game(p1, p2);
 	}
 
 	@After
@@ -26,7 +27,7 @@ public class testGame {
 	
 	@Test
 	public void testGameRound() {
-		String [] p1 = {"Dave","S"};
+		String [] p1 = {"Dave","c"};
 		String [] p2 = {"Armando","P"};		
 		Game game = new Game(p1, p2);
 				
@@ -40,12 +41,11 @@ public class testGame {
 		assertEquals("Armando",game.result());
 	}
 	
-	@Test
+	@Test (expected = GameInputException.class)  
 	public void testGameInputs() {
 		String [] p1 = {"Dave","c"};
 		String [] p2 = {"Armando","p"};		
 		Game game = new Game(p1, p2);
-		
 		}
 
 }
