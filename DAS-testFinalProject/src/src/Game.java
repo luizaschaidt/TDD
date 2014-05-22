@@ -35,32 +35,52 @@ public class Game {
 
 
 	public String tournament_winner(Game[] games) {
+		
 		int it = games.length;
+		
 		List<String> estrategia1 = new ArrayList<String>();
 		List<String> vencedor1 = new ArrayList<String>();
+
 		Game gameTemp;
 		String[] player1 = null;
 		String[] player2 = null;
 		
-		int it1 = vencedor1.size();
-		while(it1<=1){
-			for(int j =0 ; j<vencedor1.size(); j++){
-				String [] p1 = null;
-				p1[0]=vencedor1.get(j);
-				String [] p2 = null;		
-				p2[1]=estrategia1.get(j);
-				Game games1 = new Game(p1, p2);
-				
-			}
-			for(int n=0;n<it;n++){	
-				gameTemp = games[n];
+		Game [] vencedores = games;
+					
+			
+		for(int n=0;n<it;n++){
+			
+				gameTemp = vencedores[n];
 				player1 = gameTemp.p1;
 				player2 = gameTemp.p2;
+				
 				vencedor1.add(result(player1, player2)[0]);			
 				estrategia1.add(result(player1, player2)[1]);				
-				it1 = vencedor1.size();
-			}
 		}
+				
+				if (vencedor1.size()>1){
+					for(int j =0 ; j<3; j++){
+						vencedores[j]=null;
+						
+						//String [] p1 = null;
+						List<String> p1 = new ArrayList<String>();
+						List<String> p2 = new ArrayList<String>();
+
+						p1.add(vencedor1.get(j));
+						p1.add(estrategia1.get(j));
+						
+						p2.add(vencedor1.get(j+1));
+						p2.add(estrategia1.get(j+1));
+						
+						//Game games1 = new Game(p1, p2);
+						//vencedores[j]= games1;
+						
+				
+				}
+					//tournament_winner(vencedores);
+			}
+		
+		
 		System.out.println(vencedor1.toString());
 		System.out.println(estrategia1.toString());
 		
