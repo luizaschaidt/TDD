@@ -60,15 +60,23 @@ public class testGame {
 	
 	@Test
 	public void testTournament_winner(){
-		String [] p1 = {"Dave","S"};
-		String [] p2 = {"Armando","P"};		
+		String [] p1 = {"Armando","P"};
+		String [] p2 = {"Dave","S"};		
 		Game game1 = new Game(p1, p2);
 		
-		String [] p3 = {"Cesar","R"};
-		String [] p4 = {"Kevin","S"};		
-		Game game2 = new Game(p3, p4);
+		String [] p3 = {"Richard","R"};
+		String [] p4 = {"Michael","S"};		
+		Game game2 = new Game(p3, p4); 
 		
-		Game [] games = {game1, game2};
+		String [] p5 = {"Allen","S"};
+		String [] p6 = {"Omer","P"};		
+		Game game3 = new Game(p5, p6);
+		
+		String [] p7 = {"David E.","R"};
+		String [] p8 = {"Richard X.","P"};		
+		Game game4 = new Game(p7, p8);
+		
+		Game [] games = {game1, game2, game3, game4};
 		
 		Game tournament = new Game(games);
 		
