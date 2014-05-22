@@ -30,14 +30,14 @@ public class testGame {
 		String [] p2 = {"Armando","P"};		
 		Game game = new Game(p1, p2);
 				
-		assertEquals("Dave",game.result());
+		assertEquals("Dave",game.result(p1, p2)[0]);
 		
 		p1[0]="Dave";
 		p1[1]="S";
 		p1[0]="Armando";
 		p1[1]="R";
 			
-		assertEquals("Armando",game.result());
+		assertEquals("Armando",game.result(p1, p2)[0]);
 	}
 	
 	@Test
@@ -46,7 +46,7 @@ public class testGame {
 		String [] p2 = {"Armando","S"};		
 		Game game = new Game(p1, p2);
 				
-		assertEquals("Dave",game.result());
+		assertEquals("Dave",game.result(p1, p2)[0]);
 	}
 	
 	

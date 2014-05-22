@@ -1,5 +1,6 @@
 package src;
 
+import java.lang.reflect.Array;
 import java.util.Iterator;
 
 public class Game {
@@ -18,14 +19,12 @@ public class Game {
 	}
 
 
-	public String result(Game games) {
-		
-		
+	public String [] result(String[] p1,String[] p2) {
 		if ((p2[1] == "S" && p1[1] == "P")||(p2[1]== "P" && p1[1] == "R")||((p2[1]== "R" && p1[1] == "S"))){
-			return p2[0];
+			return p2;
 		}
 		else
-			return p1[0];
+			return p1;
 	}
 
 	public Game(Game[] games) {
@@ -35,13 +34,16 @@ public class Game {
 
 	public String tournament_winner(Game[] games) {
 		int it = games.length;
-		
-		for(int n=0;n<it;n++){
+
+			String[] vencedor = null;
+			for(int n=0;n<it;n++){
 			Game gameTemp = games[n];
 			String[] player1 = gameTemp.p1;
 			String[] player2 = gameTemp.p2;
-			String vencedor = result(games[n]);
-			System.out.println(vencedor);
+			System.out.println(result(player1, player2)[0]);
+			//vencedor[n]=result(player1,player2)[0];
+			
+
 		}
 		
 		return "Cesar";
