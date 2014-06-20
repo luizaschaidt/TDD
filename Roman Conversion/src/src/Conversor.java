@@ -59,7 +59,7 @@ public class Conversor {
 		int casas=1;
 		while((arabic = arabic/10) >0)
 			casas++;
-		if (arabic)
+	//	if (arabic)
 		return arabicValue(arabic);
 	}
 
