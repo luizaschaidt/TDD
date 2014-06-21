@@ -36,4 +36,18 @@ public class TestPostFix {
 		assertEquals("824*+1-",conv.converteParaPosfixada("8+2*4-1"));
 		assertEquals("345*6/+",conv.converteParaPosfixada("3+4*5/6"));
 	}
+	
+	@Test
+	public void testConversaoParaInternamenteFixada(){
+		assertEquals("8+2*4-1",conv.converteParaInternamenteFixada("824*+1-"));
+		assertEquals("3+4*5/6",conv.converteParaInternamenteFixada("345*6/+"));
+	}
+	
+
+	@Test
+	public void testCalculaParaInternamenteFixada(){
+		assertEquals(15,conv.calculaParaInternamenteFixada("824*+1-"),0.5);
+		assertEquals(6.33,conv.calculaParaInternamenteFixada("345*6/+"),0.5);
+		
+	}
 }

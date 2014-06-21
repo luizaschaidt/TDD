@@ -58,7 +58,7 @@ public class Conversor {
 				for(int c=0; c<operadoresValidos.length(); c++){
 					if(expressao.charAt(i) == operadoresValidos.charAt(c)){
 						if(!pilha.isEmpty()){
-							int precedenciaUltimo = verificaPrecedencia((char)pilha.lastElement());
+							int precedenciaUltimo = verificaPrecedencia(pilha.lastElement().toString().charAt(0));
 							int precedenciaAtual = verificaPrecedencia(expressao.charAt(i));
 							System.out.println("Atual:"+expressao.charAt(i)+" precedencia:"+precedenciaAtual+"    -  Ultimo:"+pilha.lastElement().toString()+ " precedencia:"+precedenciaUltimo);
 							if(precedenciaUltimo > precedenciaAtual){
@@ -111,5 +111,74 @@ public class Conversor {
 		}
 	}
 
+	public String converteParaInternamenteFixada(String expressao) {
+		
+		String fixada = "";
+		Stack pilha = new Stack();
+		
+		for (int i= 0; i < expressao.length(); i++){
+			for(int c=0; c<numerosValidos.length(); c++){
+				if(expressao.charAt(i) == numerosValidos.charAt(c)){
+					pilha.push(expressao.charAt(i));
+				}
+			}
+			for(int c=0; c<operadoresValidos.length(); c++){
+				if(expressao.charAt(i) == operadoresValidos.charAt(c)){
+				
+					fixada = pilha.get(pilha.size()-2).toString()+expressao.charAt(i)+pilha.lastElement();
+					pilha.pop();
+					pilha.pop();
+					pilha.push(fixada);
+					System.out.println("fixada="+ fixada);
+				}
+			}
+			}
+		String resultado1 = "";
+		resultado1 = pilha.toString();
+		resultado1 = resultado1.replaceAll("\\[", "").replaceAll("\\]", "");
+		return resultado1;
+	}
+	
+	public float calculaParaInternamenteFixada(String expressao) {
+		
+		String fixada = "";
+		Stack pilha = new Stack();
+		float resultado = 0;
+		
+		for (int i= 0; i < expressao.length(); i++){
+			for(int c=0; c<numerosValidos.length(); c++){
+				if(expressao.charAt(i) == numerosValidos.charAt(c)){
+					pilha.push(expressao.charAt(i));
+				}
+			}
+			for(int c=0; c<operadoresValidos.length(); c++){
+				if(expressao.charAt(i) == operadoresValidos.charAt(c)){
+					switch (expressao.charAt(i)) {
+					case '+':
+						resultado = Float.parseFloat(pilha.get(pilha.size()-2).toString()) + Float.parseFloat(pilha.lastElement().toString());	
+						break;
+					case '-':
+						resultado = Float.parseFloat(pilha.get(pilha.size()-2).toString()) - Float.parseFloat(pilha.lastElement().toString());	
+						break;
+					case '*':
+						resultado = Float.parseFloat(pilha.get(pilha.size()-2).toString()) * Float.parseFloat(pilha.lastElement().toString());	
+						break;
+					case '/':
+						resultado = Float.parseFloat(pilha.get(pilha.size()-2).toString()) / Float.parseFloat(pilha.lastElement().toString());	
+						break;
+					default:
+						break;
+					}
+					
+					pilha.pop();
+					pilha.pop();
+					pilha.push(resultado);
+				}
+			}
+			}
+
+		return resultado;
+	}
 
 }
+
