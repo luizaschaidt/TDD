@@ -58,6 +58,39 @@ public class TestTicTacToe {
 		assertEquals("Jogada não efetuada!",jogo.preencheTabuleiro("X",3,3));
 		assertEquals("Jogada não efetuada!",jogo.preencheTabuleiro("S",3,3));
 		assertEquals("Jogada não efetuada!",jogo.preencheTabuleiro("O",4,3));
+	}
+	
+	@Test 
+	public void testaResultadoJogo(){
+		String tabuleiroTeste[][] =  
+		    {  
+		        {"X","X","X"},  
+		        {"O","O",""},
+		        {"","","X"}
+		    };  
+		jogo.tabuleiro = tabuleiroTeste; 
+		
+		assertEquals("O vencedor e: X", jogo.resultadoJogo());
+		
+		String tabuleiroTeste1[][] =  
+		    {  
+		        {"O","X","X"},  
+		        {"O","O",""},
+		        {"O","","X"}
+		    };  
+		jogo.tabuleiro = tabuleiroTeste1; 
+		
+		assertEquals("O vencedor e: O", jogo.resultadoJogo());
+		
+		String tabuleiroTeste2[][] =  
+		    {  
+		        {"O","O","X"},  
+		        {"O","X",""},
+		        {"X","","X"}
+		    };  
+		jogo.tabuleiro = tabuleiroTeste2; 
+		
+		assertEquals("O vencedor e: X", jogo.resultadoJogo());
 		
 		
 	}
