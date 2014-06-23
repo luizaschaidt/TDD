@@ -32,12 +32,33 @@ public class TestTicTacToe {
 	
 	@Test 
 	public void testaDisponibilidade(){
+		String tabuleiroTeste[][] =  
+		    {  
+		        {"X","",""},  
+		        {"","",""},
+		        {"","",""}
+		    };  
+		jogo.tabuleiro = tabuleiroTeste; 
+		
 		assertFalse(jogo.validaDisponibilidade(1,1));
 		assertTrue(jogo.validaDisponibilidade(1,2));
 	}
 	
 	@Test 
-	public void testaJogada(){
+	public void testaPreenchimentoDoTabuleiro(){
+		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("X",1,1));
+		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("O",1,2));
+		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("X",1,3));
+		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("O",2,1));
+		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("X",2,2));
+		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("O",2,3));
+		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("X",3,1));
+		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("O",3,2));
+		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("X",3,3));
+		assertEquals("Jogada não efetuada!",jogo.preencheTabuleiro("X",3,3));
+		assertEquals("Jogada não efetuada!",jogo.preencheTabuleiro("S",3,3));
+		assertEquals("Jogada não efetuada!",jogo.preencheTabuleiro("O",4,3));
+		
 		
 	}
 	

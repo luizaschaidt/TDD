@@ -3,8 +3,8 @@ public class TicTacToe {
 	
 	 String tabuleiro[][] =  
 	    {  
-	        {"X", "", "" },  
-	        {"", "", "O"},
+	        {"","",""},  
+	        {"","",""},
 	        {"","",""}
 	    };  
 	
@@ -30,6 +30,18 @@ public class TicTacToe {
 			return false;
 		}
 			return true;
+	}
+	
+	public String preencheTabuleiro(String jogador, int linha, int coluna) {
+	
+		if(validaEntrada(linha,coluna)){
+			if(validaDisponibilidade(linha,coluna)){
+				tabuleiro[linha-1][coluna-1] = jogador;
+				return "Jogada efetuada com sucesso!";
+			}			
+		}
+		return "Jogada não efetuada!";
+
 	}
 
 	
