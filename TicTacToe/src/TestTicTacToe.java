@@ -47,14 +47,16 @@ public class TestTicTacToe {
 	@Test 
 	public void testaPreenchimentoDoTabuleiro(){
 		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("X",1,1));
-		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("O",1,2));
+		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("X",1,2));
+		assertEquals("", jogo.resultadoJogo());
 		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("X",1,3));
+		assertEquals("O vencedor e: X", jogo.resultadoJogo());
 		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("O",2,1));
 		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("X",2,2));
 		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("O",2,3));
 		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("X",3,1));
 		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("O",3,2));
-		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("X",3,3));
+		assertEquals("Jogada efetuada com sucesso!",jogo.preencheTabuleiro("O",3,3));
 		assertEquals("Jogada não efetuada!",jogo.preencheTabuleiro("X",3,3));
 		assertEquals("Jogada não efetuada!",jogo.preencheTabuleiro("S",3,3));
 		assertEquals("Jogada não efetuada!",jogo.preencheTabuleiro("O",4,3));
@@ -68,8 +70,7 @@ public class TestTicTacToe {
 		        {"O","O",""},
 		        {"","","X"}
 		    };  
-		jogo.tabuleiro = tabuleiroTeste; 
-		
+		jogo.tabuleiro = tabuleiroTeste; 		
 		assertEquals("O vencedor e: X", jogo.resultadoJogo());
 		
 		String tabuleiroTeste1[][] =  
@@ -78,8 +79,7 @@ public class TestTicTacToe {
 		        {"O","O",""},
 		        {"O","","X"}
 		    };  
-		jogo.tabuleiro = tabuleiroTeste1; 
-		
+		jogo.tabuleiro = tabuleiroTeste1; 		
 		assertEquals("O vencedor e: O", jogo.resultadoJogo());
 		
 		String tabuleiroTeste2[][] =  
@@ -88,14 +88,25 @@ public class TestTicTacToe {
 		        {"O","X",""},
 		        {"X","","X"}
 		    };  
-		jogo.tabuleiro = tabuleiroTeste2; 
-		
+		jogo.tabuleiro = tabuleiroTeste2; 		
 		assertEquals("O vencedor e: X", jogo.resultadoJogo());
 		
-		
+		String tabuleiroTeste3[][] =  
+		    {  
+		        {"O","X","O"},  
+		        {"O","O","X"},
+		        {"X","O","X"}
+		    };  
+		jogo.tabuleiro = tabuleiroTeste3;		
+		assertEquals("Empate", jogo.resultadoJogo());		
 	}
 	
-	
-	
+	@Test 
+	public void testaTipoJogo(){
+		jogo.jogo("Computador");
+		assertEquals("Computador", jogo.tipoJogo);
+		jogo.jogo("Manual");
+		assertEquals("Manual", jogo.tipoJogo);
+	}
 
 }

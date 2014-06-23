@@ -1,12 +1,20 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import com.sun.java_cup.internal.runtime.Scanner;
+import com.sun.java_cup.internal.runtime.Symbol;
+
 
 public class TicTacToe {
-	
-	 String tabuleiro[][] =  
+	BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); 
+	String tabuleiro[][] =  
 	    {  
 	        {"","",""},  
 	        {"","",""},
 	        {"","",""}
 	    }; 
+	 String tipoJogo = "";
 	 
 	 int possibilidadeVitoria[][][] = new int[][][]
 	   {  
@@ -61,19 +69,41 @@ public class TicTacToe {
 
 	public String resultadoJogo() {
 		String jogada[] = new String[3];
+		int contador =0;
 		for(int l=0; l<8; l++){
 			for(int c=0; c<3; c++){
 				
 				int linha = possibilidadeVitoria[l][c][0];
 				int coluna = possibilidadeVitoria[l][c][1];
-				jogada[c] = tabuleiro[linha-1][coluna-1];
-				
+				jogada[c] = tabuleiro[linha-1][coluna-1];				
 			}
-			if(jogada[0] == jogada[1] && jogada[1] == jogada[2]){
+			if(jogada[0] != "" && jogada[0] == jogada[1] && jogada[1] == jogada[2]){
 				return ("O vencedor e: " + jogada[0]);
 			}
 		}
-		return "X";
+		for(int l=0; l<3; l++){
+			for(int c=0; c<3; c++){
+				if(tabuleiro[l][c] != "")
+					contador++;
+			}		
+		}
+		if(contador == 9)
+			return "Empate";
+		else
+			return "";
+	}
+
+	public Object jogo(String tipo) throws IOException {
+		if(tipo == "Computador"){
+			tipoJogo = "Computador";
+			System.out.println("Jogador X, digite uma linha e coluna: ");
+			String entrada = in.readLine();
+		}
+		else{
+			tipoJogo = "Manual";
+		}
+		
+		return null;
 	}
 
 	
