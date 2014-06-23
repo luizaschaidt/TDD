@@ -16,9 +16,29 @@ public class TestaWordWrap {
 	@Test
 	public void testWordWrap() {
 		String [] resultado = {
-			"01234","56789"
+			"0123456789"
 		};
-		assertEquals(resultado, wrapper.wrap("0123456789", 6));
+		assertEquals(resultado, wrapper.wrap("0123456789", 15));
+		
+		String [] resultado2 = {
+				"01234","56789"
+			};
+		assertEquals(resultado2, wrapper.wrap("0123456789", 5));
+		
+		String [] resultado3 = {
+				"012345","6789"
+			};
+		assertEquals(resultado3, wrapper.wrap("0123456789", 6));
+		
+		String [] resultado4 = {
+				"01234","abcde","fgh"
+			};
+		assertEquals(resultado4, wrapper.wrap("01234abcdefgh", 5));
+		
+		String [] resultado5 = {
+				"0123","abcd","efh ","ijk"
+			};
+		assertEquals(resultado5, wrapper.wrap("0123abcdefh ijk", 4));
 	}
 
 }

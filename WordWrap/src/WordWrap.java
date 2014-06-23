@@ -1,28 +1,45 @@
 
 public class WordWrap {
 
-	public String[] wrap(String string, int coluna) {
-		int tamanho = string.length();
-		int qtdStrings = 0;
+	public String[] wrap(String texto, int coluna) {
+		int tamanho = texto.length();
+		int qtdtextos = 0;
+		
 		if(tamanho%coluna != 0){
-			qtdStrings = (int)Math.ceil(tamanho/coluna)+1;
+			qtdtextos = (int)Math.ceil(tamanho/coluna)+1;
 		}else
-			qtdStrings = tamanho/coluna;
+			qtdtextos = tamanho/coluna;
 		
-		System.out.println(qtdStrings);
+		String [] resultado = new String [qtdtextos];
 		
-		String [] resultado = new String [qtdStrings];
+		for(int j=0; j<  qtdtextos ; j++ ){
+			
+			resultado[j] = "";
+		}
 		
 		if(tamanho <= coluna){
-			resultado [0]= string;
+			resultado [0]= texto;
+			return resultado;
+		}else{
+			int contador = 0;
+			int j;
+			for(int i=0; i < qtdtextos ; i++ ){
+				for(j = contador; j<coluna+contador ; j++ ){
+					if(i == qtdtextos-1){
+						if((tamanho%coluna != 0)&& j < (tamanho%coluna + contador)){
+							resultado[i] = resultado[i] + texto.charAt(j);
+						}
+						if((tamanho%coluna == 0)){
+							resultado[i] = resultado[i] + texto.charAt(j);
+						}
+					}else					
+						resultado[i] = resultado[i] + texto.charAt(j);
+				}
+				contador = contador + coluna;
+			}
 			return resultado;
 		}
 		
-		for(int i=0; i<tamanho ; i++ ){
-			
-		}
-
-		return resultado;
 	}
 
 }
