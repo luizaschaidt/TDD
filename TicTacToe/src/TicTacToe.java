@@ -1,13 +1,12 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import com.sun.java_cup.internal.runtime.Scanner;
-import com.sun.java_cup.internal.runtime.Symbol;
-
+import java.util.Random;
+import java.util.Scanner;
 
 public class TicTacToe {
-	BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); 
+	
+	Scanner ler = new Scanner(System.in);
+	Random rand = new Random();
+	int resultado = 0;
+	
 	String tabuleiro[][] =  
 	    {  
 	        {"","",""},  
@@ -56,7 +55,8 @@ public class TicTacToe {
 	
 		if(validaEntrada(linha,coluna)){
 			if(validaDisponibilidade(linha,coluna)){
-				tabuleiro[linha-1][coluna-1] = jogador;
+		//		System.out.println("o que tem" + tabuleiro[linha-1][coluna-1]);
+				tabuleiro[linha-1][coluna-1] = jogador;		
 				
 				resultadoJogo();
 				
@@ -64,6 +64,7 @@ public class TicTacToe {
 			}			
 		}
 		return "Jogada não efetuada!";
+		
 
 	}
 
@@ -78,6 +79,7 @@ public class TicTacToe {
 				jogada[c] = tabuleiro[linha-1][coluna-1];				
 			}
 			if(jogada[0] != "" && jogada[0] == jogada[1] && jogada[1] == jogada[2]){
+				resultado = 1;
 				return ("O vencedor e: " + jogada[0]);
 			}
 		}
@@ -87,17 +89,51 @@ public class TicTacToe {
 					contador++;
 			}		
 		}
-		if(contador == 9)
+		if(contador == 9){
+			resultado = 2;
 			return "Empate";
+		}
 		else
 			return "";
 	}
 
-	public Object jogo(String tipo) throws IOException {
+	public Object jogo(String tipo) {
+		int lComputador;
+		int cComputador;
+		int l;
+		int c;
+		String result = "";
+		
 		if(tipo == "Computador"){
 			tipoJogo = "Computador";
-			System.out.println("Jogador X, digite uma linha e coluna: ");
-			String entrada = in.readLine();
+			while(resultado == 0){			
+				
+				do{
+					System.out.println("Jogador X, digite uma linha: ");		
+					l = ler.nextInt();
+					System.out.println("Jogador X, digite uma coluna: ");		
+					c = ler.nextInt();
+					
+					result = preencheTabuleiro("X", l, c);
+					
+				}while(result.equals("Jogada não efetuada!"));
+				
+				result = "";
+				
+				
+				do{
+					lComputador = rand.nextInt(((3-1)+1)+2);
+					cComputador = rand.nextInt(((3-1)+1)+2);
+			
+					result = preencheTabuleiro("O", lComputador,cComputador );
+				
+				}while(result.equals("Jogada não efetuada!"));
+				
+				result = "";
+				
+				System.out.println("Computador jogou na linha: " + lComputador + " e coluna: " + cComputador);
+			}
+			System.out.println(resultadoJogo());
 		}
 		else{
 			tipoJogo = "Manual";

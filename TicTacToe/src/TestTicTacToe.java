@@ -103,6 +103,14 @@ public class TestTicTacToe {
 	
 	@Test 
 	public void testaTipoJogo(){
+		String tabuleiroTeste4[][] =  
+		    {  
+		        {"","",""},  
+		        {"","",""},
+		        {"","",""}
+		    };  
+		jogo.tabuleiro = tabuleiroTeste4;		
+		
 		jogo.jogo("Computador");
 		assertEquals("Computador", jogo.tipoJogo);
 		jogo.jogo("Manual");
