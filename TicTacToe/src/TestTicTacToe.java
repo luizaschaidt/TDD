@@ -24,6 +24,24 @@ public class TestTicTacToe {
 	@Test 
 	public void testaPosicao(){
 		assertTrue(jogo.validaEntrada(1, 2));
+		assertTrue(jogo.validaEntrada(2, 2));
+		assertTrue(jogo.validaEntrada(1, 3));
+		assertFalse(jogo.validaEntrada(1, 0));
+		assertFalse(jogo.validaEntrada(4, 2));
 	}
+	
+	@Test 
+	public void testaDisponibilidade(){
+		assertFalse(jogo.validaDisponibilidade(1,1));
+		assertTrue(jogo.validaDisponibilidade(1,2));
+	}
+	
+	@Test 
+	public void testaJogada(){
+		
+	}
+	
+	
+	
 
 }

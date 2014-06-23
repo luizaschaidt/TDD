@@ -1,6 +1,13 @@
 
 public class TicTacToe {
-	int tabuleiro[][] = new int[3][3];
+	
+	 String tabuleiro[][] =  
+	    {  
+	        {"X", "", "" },  
+	        {"", "", "O"},
+	        {"","",""}
+	    };  
+	
 	/*
 	public boolean validaEntrada(String jogada) throws Exception {
 		jogada = jogada.toUpperCase();
@@ -11,8 +18,19 @@ public class TicTacToe {
 	}*/
 
 	public boolean validaEntrada(int linha, int coluna) {
-		if(true);
-		return true;
+		if(linha >= 1 && linha<=3 && coluna >=1 && coluna <=3){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
+	public boolean validaDisponibilidade(int linha, int coluna) {
+		if(tabuleiro[linha-1][coluna-1] != ""){
+			return false;
+		}
+			return true;
+	}
+
+	
 }
