@@ -14,7 +14,9 @@ public class TestTrimmer {
 		assertEquals("abc",trimmer.trimEndOfLine("abc "));
 		assertEquals("abc",trimmer.trimEndOfLine("abc   "));
 		assertEquals("  abc",trimmer.trimEndOfLine("  abc   "));
-		//assertEquals("abc/n123",trimmer.trimEndOfLine("abc /n123"));
+		assertEquals("abc/n123",trimmer.trimEndOfLine("abc /n123 "));
+		assertEquals("abc/n123",trimmer.trimEndOfLine("abc /n123"));
+		assertEquals("abc/n123/n def",trimmer.trimEndOfLine("abc /n123   /n def "));
 	}
 
 }

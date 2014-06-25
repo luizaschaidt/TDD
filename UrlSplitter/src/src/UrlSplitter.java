@@ -37,6 +37,7 @@ public class UrlSplitter {
 			return dominio;
 			}
 		}
+		
 		return "Url inválida";
 	}
 
