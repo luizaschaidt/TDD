@@ -4,43 +4,40 @@ import java.util.Stack;
 
 public class NaturalSort {
 
-	public Stack sort(String entradas []) {
+	public String[] sort(String entradas []) {
 		
-		System.out.println(Arrays.asList(entradas));
-		
-		Stack pilha = new Stack();
+		String aux = "";
 		
 		for(int i=0; i< entradas.length; i++){
-			if(pilha.isEmpty()){
-		//		pilha.push(entradas[i]);
-			}else{
-				
+			for(int j=0; j< entradas.length-1; j++){
+				if(entradas[j+1] == retornaMenor(entradas[j], entradas[j+1])){
+					String menor = (retornaMenor(entradas[j], entradas[j+1]));
+					aux = entradas[j];
+					entradas[j] = menor;
+					entradas[j+1] =aux;
+				}
 			}
 		}
 		
-		pilha.push("2");
-		pilha.push("10");
-		pilha.push("1");
-		
-		System.out.println(pilha);
-		
-		return pilha;
+		return entradas;
 	}
 
 	public String retornaMenor(String p1, String p2) {
 		String menorTamanho ="";
+		String menorValor="";
+		
 		if(p1.length()<p2.length()){
 			menorTamanho=p1;
 		}else{
 			menorTamanho=p2;
 		}
 		
-		String menorValor="";
-		
 		for(int i=0; i<menorTamanho.length(); i++){
 			if(p1.charAt(i)<p2.charAt(i)){
 				menorValor = p1;
-				System.out.println(menorValor);
+				return menorValor;
+			}else if (p1.charAt(i)>p2.charAt(i)){
+				menorValor = p2;
 				return menorValor;
 			}
 			

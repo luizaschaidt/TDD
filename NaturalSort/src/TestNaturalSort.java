@@ -24,22 +24,26 @@ public class TestNaturalSort {
 	public void tearDown() throws Exception {
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testSort() {
 		
 		String entradas [] = {"2","1","10"};
+		String resultado [] = {"1", "10", "2"};
+		assertEquals(resultado, nat.sort(entradas));
 		
-		Stack pilha = new Stack();
-		pilha.push("2");
-		pilha.push("10");
-		pilha.push("1");
+		String entradas2 [] = {"10","1","101"};		
+		String resultado2 [] = {"1", "10", "101"};		
+		assertEquals(resultado2, nat.sort(entradas2));
 		
-		assertEquals(pilha, nat.sort(entradas));;
+		String entradas3 [] = {"Alpha 200","Alpha 2","Alpha 100","Alpha 2A","Alpha 2A900","Alpha 2A8000"};		
+		String resultado3 [] = {"Alpha 100","Alpha 2","Alpha 200","Alpha 2A","Alpha 2A8000","Alpha 2A900"};		
+		assertEquals(resultado3, nat.sort(entradas3));
 	}
 	
 	@Test
 	public void testRetornaMenorString() {
-		assertEquals("10", nat.retornaMenor("10","2"));
+		assertEquals("10", nat.retornaMenor("2","10"));
 		assertEquals("1", nat.retornaMenor("10","1"));
 		assertEquals("102354", nat.retornaMenor("102354","1023540"));
 		assertEquals("1023540", nat.retornaMenor("1023541","1023540"));
