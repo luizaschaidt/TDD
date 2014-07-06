@@ -26,6 +26,7 @@ public class TestSpellOut {
 	@Test
 	public void shouldSpeelOutAunitAmount() throws SpeelOutNullException {
 		assertEquals("three", speller.spellOutIntegerAmount("3"));
+		assertEquals("one", speller.spellOutIntegerAmount("1"));
 		assertEquals("zero", speller.spellOutIntegerAmount("0"));
 		assertEquals("two", speller.spellOutIntegerAmount("2"));
 		assertEquals("five", speller.spellOutIntegerAmount("5"));
@@ -59,6 +60,26 @@ public class TestSpellOut {
 	public void shouldSpeelOutAthousandAmount() throws SpeelOutNullException {
 		assertEquals("one thousand", speller.spellOutIntegerAmount("1000"));
 		assertEquals("one thousand one hundred", speller.spellOutIntegerAmount("1100"));
+		assertEquals("one thousand one hundred and one", speller.spellOutIntegerAmount("1101"));
+		assertEquals("two thousand five hundred twenty-three", speller.spellOutIntegerAmount("2523"));
+	}
+	
+	@Test
+	public void shouldSpeelOutAdecimalAmount() throws SpeelOutNullException {
+		assertEquals("10/100", speller.spellOutDecimalAmount(".10"));
+		assertEquals("25/100", speller.spellOutDecimalAmount(".25"));
+	}
+	
+	@Test (expected = SpeelOutNullException.class)
+	public void shouldNotBeNullTheDecimalAmount() throws SpeelOutNullException {
+		speller.spellOutDecimalAmount(".");
+	}
+	
+	@Test
+	public void shouldSpeelOutAcompleteAmount() throws SpeelOutNullException {
+		assertEquals("One dollar", speller.completeSpellOut("1"));
+		assertEquals("Twenty-nine dollars", speller.completeSpellOut("29"));
+		assertEquals("Two thousand five hundred twenty-three and 04/100 dollars", speller.completeSpellOut("2523.04"));
 	}
 
 }

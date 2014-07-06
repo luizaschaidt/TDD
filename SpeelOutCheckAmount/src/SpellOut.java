@@ -58,30 +58,43 @@ public class SpellOut {
 	}
 
 	public String spellOutIntegerAmount(String amount) throws SpeelOutNullException {
-		
+		String spellOut = "";
 		if(verifyAmount(amount)){
-			if(amount.length()==1){
-				return spellOutAnUnitIntegerAmount(amount);
-			}else if(amount.length()==2) {
-				return spellOutAdozenIntegerAmount(amount);
-			}else if(amount.length()==3){
-				return spellOutAhundredIntegerAmount(amount);
-			}else if(amount.length()==4){
-				String spellOutAmount = "";
-				spellOutAmount += spellOutAnUnitIntegerAmount(amount.charAt(0)+"");
-				spellOutAmount += " thousand";
-				if(amount.charAt(1)== '0' && amount.charAt(2)== '0' && amount.charAt(3)== '0'){
-					return spellOutAmount;
-				}else if(amount.charAt(1)!= '0' && amount.charAt(2)== '0' && amount.charAt(3)== '0'){
-					spellOutAmount += " "+spellOutAhundredIntegerAmount(amount.substring(1,4));
-					return spellOutAmount;
-				}
+			switch (amount.length()) {
+			case 1:
+				spellOut += spellOutAnUnitIntegerAmount(amount);
+				break;
+			case 2:
+				spellOut += spellOutAdozenIntegerAmount(amount);
+				break;
+			case 3:
+				spellOut += spellOutAhundredIntegerAmount(amount);
+				break;
+			case 4:
+				spellOut += spellOutAthousandIntegerAmount(amount);
+				break;
 			}
-				
 		}
-		return "";
+		return spellOut;
 	}
 
+	private String spellOutAnUnitIntegerAmount(String amount) {
+		return unitDictionary.get(amount);
+	}
+	
+
+	private String spellOutAdozenIntegerAmount(String amount) {
+		if(dozenDictionary.containsKey(amount)){
+			return dozenDictionary.get(amount);
+		}else{
+			String spellOutAmount = "";
+			spellOutAmount = dozenDictionary.get(amount.charAt(0)+"");
+			spellOutAmount += "-";
+			spellOutAmount += unitDictionary.get(amount.charAt(1)+"");
+			return spellOutAmount;
+		}
+	}
+	
 	private String spellOutAhundredIntegerAmount(String amount) {
 		String spellOutAmount = "";
 		spellOutAmount = spellOutAnUnitIntegerAmount(amount.charAt(0)+"");
@@ -100,22 +113,43 @@ public class SpellOut {
 		return spellOutAmount;
 	}
 
-
-	private String spellOutAnUnitIntegerAmount(String amount) {
-		return unitDictionary.get(amount);
-	}
-	
-
-	private String spellOutAdozenIntegerAmount(String amount) {
-		if(dozenDictionary.containsKey(amount)){
-			return dozenDictionary.get(amount);
-		}else{
-			String spellOutAmount = "";
-			spellOutAmount = dozenDictionary.get(amount.charAt(0)+"");
-			spellOutAmount += "-";
-			spellOutAmount += unitDictionary.get(amount.charAt(1)+"");
+	private String spellOutAthousandIntegerAmount(String amount) {
+		String spellOutAmount = "";
+		spellOutAmount += spellOutAnUnitIntegerAmount(amount.charAt(0)+"");
+		spellOutAmount += " thousand";
+		if(amount.charAt(1)== '0' && amount.charAt(2)== '0' && amount.charAt(3)== '0'){
 			return spellOutAmount;
 		}
+		spellOutAmount += " "+spellOutAhundredIntegerAmount(amount.substring(1,4));
+		return spellOutAmount;
 	}
 
+	public String spellOutDecimalAmount(String decimalAmount) throws SpeelOutNullException {
+		if(decimalAmount.length()!=3){
+			throw new SpeelOutNullException();
+		}
+		
+		decimalAmount = (decimalAmount.charAt(1)+"")+(decimalAmount.charAt(2)+"")+"/100";
+		return decimalAmount;
+		
+	}
+
+	public String completeSpellOut(String completeAmount) throws SpeelOutNullException {
+		String completeSpellOutAmount = "";
+		if(completeAmount.contains(".")){
+			completeSpellOutAmount = spellOutIntegerAmount(completeAmount.substring(0,completeAmount.indexOf(".")));
+			completeSpellOutAmount += " and "+spellOutDecimalAmount(completeAmount.substring(completeAmount.indexOf("."),completeAmount.length()));
+		}else{
+			completeSpellOutAmount = spellOutIntegerAmount(completeAmount);
+		}
+		
+		if(completeAmount.equals("1")){
+			completeSpellOutAmount += " dollar";
+		}else{
+			completeSpellOutAmount += " dollars";
+		}
+		
+		completeSpellOutAmount = completeSpellOutAmount.substring(0,1).toUpperCase() + completeSpellOutAmount.substring(1);
+		return completeSpellOutAmount;
+	}
 }
